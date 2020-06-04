@@ -9,7 +9,6 @@ import runSequence from 'run-sequence';
 import { spawnAsync } from './helpers';
 
 const fs = Promise.promisifyAll(require('fs-extra'));
-const requestAsync = Promise.promisify(request);
 const yauzl = Promise.promisifyAll(require('yauzl'));
 
 const pkg = require('../package.json');
@@ -101,19 +100,20 @@ function download(url, download_path, overwrite = false) {
     throw err;
   }
 
-  return requestAsync({method: 'HEAD', url})
-    .then(res => {
-      if (res.statusCode >= 400) throw new Error(`Status ${res.statusCode}: ${url}`);
-      return new Promise((resolve, reject) => {
-        return request(url)
-          .pipe(file)
-          .on('error', reject)
-          .on('close', function() {
-            file.close();
-            return resolve();
-          });
+  const headers = {
+    referer: `https://github.com/electron/electron/releases/tag/v${pkg.devDependencies['electron']}`,
+    'user-agent': 'Championify Releases'
+  };
+
+  return new Promise((resolve, reject) => {
+    return request({url, headers})
+      .pipe(file)
+      .on('error', reject)
+      .on('close', function() {
+        file.close();
+        return resolve();
       });
-    });
+  });
 }
 
 function extract(download_path, os) {
@@ -133,7 +133,7 @@ function extract(download_path, os) {
 function cache(os, arch) {
   fs.mkdirsSync('./cache');
   const version = pkg.devDependencies['electron'];
-  const download_link = `https://github.com/atom/electron/releases/download/v${version}/electron-v${version}-${os}-${arch}.zip`;
+  const download_link = `https://github.com/electron/electron/releases/download/v${version}/electron-v${version}-${os}-${arch}.zip`;
 
   const zip_name = path.basename(download_link);
   const download_path = path.join('./cache', zip_name);
@@ -152,6 +152,13 @@ gulp.task('electron:deps', function(cb) {
   const download_url = `https://raw.githubusercontent.com/dustinblackman/electron-runas-builds/master/compiled/${pkg.devDependencies.electron}/win32/ia32/runas.node`;
   spawnAsync(npm, ['i', '--production', '--prefix', './dev'].concat(install_items))
     .then(() => download(download_url, path.join(__dirname, '../dev/node_modules/runas/build/Release/runas.node'), true))
+    .then(() => {
+      console.log('Adding main fix to ipaddr.js');
+      const pkg_path = path.join(__dirname, '../dev/node_modules/ipaddr.js/package.json');
+      const ipaddr_pkg = require(pkg_path);
+      ipaddr_pkg.main = './lib/ipaddr.js';
+      fs.writeFileSync(pkg_path, JSON.stringify(ipaddr_pkg), null, 2);
+    })
     .asCallback(cb);
 });
 

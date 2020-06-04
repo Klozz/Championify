@@ -5,12 +5,13 @@
 _Champion-If-Ayyy_
 
 [![Donate](https://img.shields.io/badge/Donate-Patreon-5cb85c.svg)](https://patreon.com/dustinblackman)
-[![Join the chat at https://gitter.im/dustinblackman/Championify](https://img.shields.io/badge/%E2%8A%AA%20GITTER%20-JOIN%20CHAT%20%E2%86%92-brightgreen.svg?style=flat)](https://gitter.im/dustinblackman/Championify?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![API Doc](https://doclets.io/dustinblackman/Championify/master.svg)](https://doclets.io/dustinblackman/Championify/master)
+[![API Doc](https://img.shields.io/badge/API--Doc_master-ready-green.svg)](https://doclets.io/dustinblackman/Championify/master)
 [![Travis](https://img.shields.io/travis/dustinblackman/Championify/master.svg)](https://travis-ci.org/dustinblackman/Championify/builds)
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/dt20uyoxt2skgneu/branch/master?svg=true)](https://ci.appveyor.com/project/dustinblackman/championify/branch/master)
 [![Coverage Status](https://img.shields.io/coveralls/dustinblackman/Championify/master.svg)](https://coveralls.io/github/dustinblackman/Championify?branch=master)
 [![Translations](https://img.shields.io/badge/Translations-Transifex-135d91.svg)](https://www.transifex.com/dustinblackman/championify)
+
+__Project on hiatus.__ https://dustinblackman.com/posts/2019/05/hiatus-from-open-source/
 
 Latest Release Downloads: [![Downloads](https://img.shields.io/github/downloads/dustinblackman/Championify/latest/total.svg)](https://github.com/dustinblackman/Championify/releases/latest)
 
@@ -18,7 +19,7 @@ Championify is a little program that downloads all the recent item sets from pop
 
 Windows and OSX are both supported, tested on Windows 10 and OSX 10.12.1.
 
-__NOTE__: All Championify clients before version 2.0.0 no longer work. Please download the latest versiom from the [releases](https://github.com/dustinblackman/Championify/releases/latest) page.
+__NOTE__: All Championify clients before version 2.0.0 no longer work. Please download the latest version from the [releases](https://github.com/dustinblackman/Championify/releases/latest) page.
 
 ![Championify](resources/screenshots/readme_screenshot.png)
 
@@ -26,13 +27,15 @@ Check out screenshots [here](https://imgur.com/a/vgS3I)!
 
 There's also [Championify for Android](https://github.com/OmerValentine/Championify-Android)!
 
+[Code Sponsor](https://app.codesponsor.io/link/owV5qUw9JoSRvTBFtixp6Xui/dustinblackman/Championify)
+
 ---
 
 ## Features
 - Summoners Rift and ARAM Item Sets
 - 7 Sources (Champion.gg, LolFlavor, KoreanBuilds, op.gg, Lolalytics, Probuilds, and Lolmasters)
 - Skill Priorities lists (Q.W.E.Q.E.R) or Q>E>W
-- 39 Languages
+- 41 Languages
 - Bunch of preferences to display item sets in the way you prefer
 - Automation using command line preferences (simpler system coming soon)
 - Automatically save preference settings
@@ -49,7 +52,7 @@ Found [here](https://github.com/dustinblackman/Championify/releases/latest)
 I'm completely open to new ideas and suggestions! Put up an [Issue](https://github.com/dustinblackman/Championify/issues), hit me up on [Gitter](https://gitter.im/dustinblackman/Championify), or send me a message on reddit [/u/dustinheroin](https://www.reddit.com/user/dustinheroin) and I'll see what I can do.
 
 ## Contribute
-Please see [CONTRIBUTE.md](CONTRIBUTE.md)
+Please see [CONTRIBUTING.md](./.github/CONTRIBUTING.md)
 
 ## [FAQ](FAQ.md)
 See [FAQ.md](FAQ.md)
@@ -78,6 +81,7 @@ C:\Users\YOURNAME\AppData\Local\Championify\championify.exe --processStartArgs -
 ```
 
 <a name="source" />
+
 ## Build From Source
 You must have Node 6.9.1 and npm 3 installed on your system (thats what Electron is using), git clone the repo and run the following in the root folder.
 

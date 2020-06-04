@@ -1,5 +1,92 @@
 # Changelog
 
+<a name="2.1.5" />
+## 2.1.5 (February 12th, 2018)
+
+#### Bug Fixes
+- Handle when LolAlytics is missing skill orders [#386](https://github.com/dustinblackman/Championify/issues/386)
+
+<a name="2.1.4" />
+## 2.1.4 (January 29th, 2018)
+
+#### Bug Fixes
+- Fixed Probuilds not downloading any item sets. [#382](https://github.com/dustinblackman/Championify/issues/382)
+- Fixed cursor type on footer links. [#383](https://github.com/dustinblackman/Championify/pull/383) (Thanks [mnlkrs](https://github.com/mnlkrs))
+
+<a name="2.1.3" />
+## 2.1.3 (November 22nd, 2017)
+
+#### Bug Fixes
+- Fixed windows builds not being signed correctly. Some users may be forced to reinstall. Fixes #366 and #370.
+
+<a name="2.1.2" />
+## 2.1.2 (November 22nd, 2017)
+
+#### Bug Fixes
+- Fixed garena path checking. [#367 @hollowsxd](https://github.com/dustinblackman/Championify/pull/367)
+
+<a name="2.1.1" />
+## 2.1.1 (November 10th, 2017)
+
+#### Bug Fixes
+- Fixed op.gg to work with updated website
+
+<a name="2.1.0" />
+## 2.1.0 (October 31st, 2017)
+
+#### Features
+- Added initial Hindi and Khmer translations
+
+#### Bug Fixes
+- Updated German translations
+- Fixed Lolflavor endpoints
+
+<a name="2.0.11" />
+## 2.0.11 (October 17th, 2017)
+- Fixed parsing bug with Koreanbuilds. [#330](https://github.com/dustinblackman/Championify/issues/330)
+
+#### Bug Fixes
+
+<a name="2.0.10" />
+## 2.0.10 (October 13th, 2017)
+
+#### Bug Fixes
+- Fixed Koreanbuilds not finding champions to import. [#346](https://github.com/dustinblackman/Championify/issues/346)
+
+<a name="2.0.9" />
+## 2.0.9 (October 3rd, 2017)
+
+#### Bug Fixes
+- Limits outbound requests to fix timeout errors on some systems. [#342](https://github.com/dustinblackman/Championify/pull/342) (Thanks [gerriet-hinrichs](http://github.com/gerriet-hinrichs))
+
+<a name="2.0.8" />
+## 2.0.8 (September 14th, 2017)
+
+#### Bug Fixes
+- Replaced special items with what they're built from (e.g Orns Molten Edge to Infinity Edge)
+
+<a name="2.0.7" />
+## 2.0.7 (August 15th, 2017)
+
+#### Bug Fixes
+- Fixed displaying lolmaster version
+- Updated translations
+
+<a name="2.0.6" />
+## 2.0.6 (July 25th, 2017)
+
+#### Bug Fixes
+- Fixed routes bug with Champion.gg
+
+<a name="2.0.5" />
+## 2.0.5 (July 12th, 2017)
+
+#### Bug Fixes
+- Fixed French tooltip translation being cut
+- Fixed Probuilds failing due to 404 with Kayn
+- Fixed Serbian flag
+- Fixed proper language translation for Polish
+
 <a name="2.0.4" />
 ## 2.0.4 (March 4th, 2017)
 

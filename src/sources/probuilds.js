@@ -22,26 +22,15 @@ export const source_info = {
 };
 
 function getChamps() {
-  return request('http://probuilds.net/champions')
-    .then(cheerio.load)
-    .then($ => {
-      return $('.champ-image')
-        .map((idx, el) => $(el).attr('data-id').split('|')[0])
-        .get();
-    });
+  return request({url: 'http://probuilds.net/ajax/championListNew', json: true})
+    .then(R.prop('champions'))
+    .map(R.prop('key'));
 }
 
 function getIDs($, el) {
-  return el.find('.item')
+  return arrayToBuilds(el.find('.item.tooltip')
     .map((idx, entry) => $(entry).attr('data-id'))
-    .get();
-}
-
-function mergeIDs($, divs, start_point) {
-  return arrayToBuilds(R.concat(
-    getIDs($, divs.eq(start_point)),
-    getIDs($, divs.eq(start_point + 1))
-  ));
+    .get());
 }
 
 function getTopKDAItems(champ) {
@@ -77,15 +66,25 @@ function getTopKDAItems(champ) {
 
 function getItems(champ_case) {
   const champ = champ_case.toLowerCase();
-  cl(`${T.t('processing')} ProBuilds: ${T.t(champ)}`);
+  try {
+    cl(`${T.t('processing')} ProBuilds: ${T.t(champ)}`);
+  } catch (err) {
+    store.push('undefined_builds', {
+      source: source_info.name,
+      champ,
+      position: 'All'
+    });
+    return;
+  }
+
   return Promise.join(
     request(`http://probuilds.net/champions/details/${champ_case}`).then(cheerio.load),
     getTopKDAItems(champ)
   )
   .spread(($, kda) => {
-    const divs = $('.popular-items').find('div.left');
-    const core = mergeIDs($, divs, 0);
-    const boots = mergeIDs($, divs, 2);
+    const divs = $('.popular-section');
+    const core = getIDs($, divs.eq(0));
+    const boots = getIDs($, divs.eq(2));
 
     const riot_json = R.merge(default_schema, {
       champion: champ,

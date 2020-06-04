@@ -42,17 +42,20 @@ export function getSr() {
       //     });
       //   });
 
-      return $c('div[class="champIcon "]')
+      return $c('.champIcon')
         .map((idx, elem) => {
-          let name = $c(elem).attr('name');
+          const name = $c(elem).attr('name');
+          const id = $c(elem).attr('id');
+          if (!id) return;
           return {
-            id: $c(elem).attr('id'),
+            id,
             name,
             formatted_name: didyoumean(name, store.get('champs')) || name
           };
         })
         .get();
     })
+    .filter(R.identity)
     .tap(() => Log.info('koreanbuilds: Getting Roles'))
     .map(champ_data => request(`http://koreanbuilds.net/roles?championid=${champ_data.id}`)
       .then(cheerio.load)
@@ -133,7 +136,7 @@ export function getSr() {
               source: 'koreanbuilds'
             };
           })
-        , {concurrency: 1})
+        )
         .catch(err => {
           Log.warn(err);
           store.push('undefined_builds', {champ: champ_data.formatted_name, position: champ_data.roles, source: source_info.name});
